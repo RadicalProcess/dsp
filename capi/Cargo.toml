@@ -1,0 +1,11 @@
+[package]
+name = "capi"
+version = "0.1.0"
+edition = "2018"
+authors = ["Chikashi Miyama <me@chikashi.net>"]
+
+[dependencies]
+dsp = { path = "../dsp" }
+
+[lib]
+crate-type = ["staticlib"]
