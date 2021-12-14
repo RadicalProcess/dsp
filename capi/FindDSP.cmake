@@ -6,15 +6,27 @@ execute_process(
         COMMAND cbindgen . --output dsp.h
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
 
-find_library(DSP_CORE_DEBUG
-        NAMES capi.lib
-        PATHS ${CMAKE_CURRENT_LIST_DIR}/target/debug
-        NO_DEFAULT_PATH)
+if (APPLE)
+        find_library(DSP_CORE_DEBUG
+                NAMES capi.a
+                PATHS ${CMAKE_CURRENT_LIST_DIR}/target/debug
+                NO_DEFAULT_PATH)
 
-find_library(DSP_CORE_RELEASE
-        NAMES capi.lib
-        PATHS ${CMAKE_CURRENT_LIST_DIR}/target/release
-        NO_DEFAULT_PATH)
+        find_library(DSP_CORE_RELEASE
+                NAMES capi.a
+                PATHS ${CMAKE_CURRENT_LIST_DIR}/target/release
+                NO_DEFAULT_PATH)
+elseif (WIN32)
+        find_library(DSP_CORE_DEBUG
+                NAMES capi.lib
+                PATHS ${CMAKE_CURRENT_LIST_DIR}/target/debug
+                NO_DEFAULT_PATH)
+
+        find_library(DSP_CORE_RELEASE
+                NAMES capi.lib
+                PATHS ${CMAKE_CURRENT_LIST_DIR}/target/release
+                NO_DEFAULT_PATH)
+endif()
 
 add_library(DSP::DSP INTERFACE IMPORTED)
 
