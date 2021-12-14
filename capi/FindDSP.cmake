@@ -8,12 +8,12 @@ execute_process(
 
 if (APPLE)
         find_library(DSP_CORE_DEBUG
-                NAMES capi.a
+                NAMES libcapi.a
                 PATHS ${CMAKE_CURRENT_LIST_DIR}/target/debug
                 NO_DEFAULT_PATH)
 
         find_library(DSP_CORE_RELEASE
-                NAMES capi.a
+                NAMES libcapi.a
                 PATHS ${CMAKE_CURRENT_LIST_DIR}/target/release
                 NO_DEFAULT_PATH)
 elseif (WIN32)
