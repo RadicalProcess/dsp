@@ -10,5 +10,4 @@ pub mod additive;
 mod cycle;
 mod waveform;
 mod point;
-mod lookahead;
 mod counter;
