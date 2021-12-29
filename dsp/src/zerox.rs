@@ -14,7 +14,8 @@ impl Processor for ZeroX {
     fn process(&mut self, buffer:&mut [f32] ){
 
         fn check_zerox(peak_amp:f32, value:f32)->bool{
-            peak_amp < 0.0 && value > 0.0 || peak_amp >= 0.0 && value < 0.0
+            // some DAW fill buffer with very small number this is the tweak aginst that
+            peak_amp < -1.00000001E-10 && value > 1.00000001E-10 || peak_amp >= 1.00000001E-10 && value < -1.00000001E-10
         }
 
         for sample in buffer.iter_mut() {
